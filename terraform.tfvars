@@ -19,6 +19,6 @@ vlan_quantity = 1
 #router = "bcr03a.dal10"
 
 router = "bcr01a.dal12"
-gateway_id = "635771"
+gateway_id = ""
 
 vlan_tags = ["generated","ci","vcenter.devqe.ibmc.devcluster.openshift.com"]
