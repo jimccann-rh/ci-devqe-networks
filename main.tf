@@ -24,6 +24,7 @@ resource "ibm_network_vlan" "ci_vlans" {
 
 
 resource "ibm_network_gateway_vlan_association" "gateway_vlan_association" {
+  count = var.vlan_quantity
   gateway_id      = var.gateway_id
   network_vlan_id = ibm_network_vlan.ci_vlans[count.index].id
   bypass          = false
