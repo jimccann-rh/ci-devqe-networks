@@ -15,7 +15,7 @@ provider "ibm" {
 resource "ibm_network_vlan" "ci_vlans" {
   count = var.vlan_quantity
 
-  name            = "ci_vlan_${count.index}"
+  name            = "ci_vlan_connect_${count.index}"
   datacenter      = var.datacenter
   router_hostname = var.router
   type            = "PRIVATE"
