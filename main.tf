@@ -48,3 +48,45 @@ resource "ibm_subnet" "portable_subnet" {
     create = "45m"
   }
 }
+
+#disconnected
+
+resource "ibm_network_vlan" "ci_vlans_disconnected" {
+  count = var.vlan_quantity_disconnected
+
+  name            = "ci_vlan_disconnected${count.index}"
+  datacenter      = var.datacenter
+  router_hostname = var.router
+  type            = "PRIVATE"
+  tags = var.vlan_tags_disconnected
+}
+
+
+resource "ibm_network_gateway_vlan_association" "gateway_vlan_association_disconnected" {
+  count = var.vlan_quantity_disconnected
+
+  gateway_id      = var.gateway_id
+  network_vlan_id = ibm_network_vlan.ci_vlans_disconnected[count.index].id
+  bypass          = false
+}
+
+
+resource "ibm_subnet" "portable_subnet_disconnected" {
+  count = var.vlan_quantity_disconnected
+
+  type       = "Portable"
+  private    = true
+  ip_version = 4
+  capacity   = var.subnet_capacity
+  vlan_id    = ibm_network_vlan.ci_vlans_disconnected[count.index].id
+  notes      = "ci_vlan_disconnected_${count.index}"
+  tags = var.vlan_tags_disconnected
+
+  //User can increase timeouts
+  timeouts {
+    create = "45m"
+  }
+}
+                                       
+
+

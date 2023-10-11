@@ -18,6 +18,11 @@ variable "vlan_quantity" {
   default = 1
 }
 
+variable "vlan_quantity_disconnected" {
+  type = number
+  default = 0
+}
+
 variable "subnet_capacity" {
   type = number
   default = 128
@@ -36,5 +41,9 @@ variable "router" {
 }
 
 variable "vlan_tags" {
+  type = list(string)
+}
+
+variable "vlan_tags_disconnected" {
   type = list(string)
 }
