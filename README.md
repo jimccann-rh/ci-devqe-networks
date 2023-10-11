@@ -27,4 +27,5 @@ jq '{vlans: .vlanNumber, gateway: .subnets[0].gateway}' data.json >> vlans_and_g
 
 
 
-ibmcloud sl vlan list|grep ci_vlan | cut -d ' ' -f 1| xargs -I {} ibmcloud sl vlan detail --no-vs --no-hardware --output json {} | jq -s . > data.json
+ibmcloud sl vlan list|grep ci_vlan_connect | cut -d ' ' -f 1| xargs -I {} ibmcloud sl vlan detail --no-vs --no-hardware --output json {} | jq -s . > cdata.json
+ibmcloud sl vlan list|grep ci_vlan_disconnect | cut -d ' ' -f 1| xargs -I {} ibmcloud sl vlan detail --no-vs --no-hardware --output json {} | jq -s . > ddata.json
