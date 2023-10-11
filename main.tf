@@ -25,6 +25,7 @@ resource "ibm_network_vlan" "ci_vlans" {
 
 resource "ibm_network_gateway_vlan_association" "gateway_vlan_association" {
   count = var.vlan_quantity
+
   gateway_id      = var.gateway_id
   network_vlan_id = ibm_network_vlan.ci_vlans[count.index].id
   bypass          = false
@@ -39,7 +40,7 @@ resource "ibm_subnet" "portable_subnet" {
   ip_version = 4
   capacity   = var.subnet_capacity
   vlan_id    = ibm_network_vlan.ci_vlans[count.index].id
-  notes      = "portable_subnet_ci"
+  notes      = "portable_subnet_ci_${count.index}"
   tags = var.vlan_tags
 
   //User can increase timeouts
