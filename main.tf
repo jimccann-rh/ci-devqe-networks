@@ -40,7 +40,7 @@ resource "ibm_subnet" "portable_subnet" {
   ip_version = 4
   capacity   = var.subnet_capacity
   vlan_id    = ibm_network_vlan.ci_vlans[count.index].id
-  notes      = "ci_vlan_${count.index}"
+  notes      = "ci_vlan_connect_${count.index}"
   tags = var.vlan_tags
 
   //User can increase timeouts
