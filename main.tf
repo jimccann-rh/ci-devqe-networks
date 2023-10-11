@@ -54,7 +54,7 @@ resource "ibm_subnet" "portable_subnet" {
 resource "ibm_network_vlan" "ci_vlans_disconnected" {
   count = var.vlan_quantity_disconnected
 
-  name            = "ci_vlan_disconnected${count.index}"
+  name            = "ci_vlan_disconnect_${count.index}"
   datacenter      = var.datacenter
   router_hostname = var.router
   type            = "PRIVATE"
